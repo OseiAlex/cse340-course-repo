@@ -1,0 +1,558 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+    --primary-color: #14532d;
+    --primary-light: #166534;
+    --secondary-color: #f0fdf4;
+    --accent-color: #ca8a04;
+    --text-color: #1f2937;
+    --muted-text: #6b7280;
+    --background-color: #ffffff;
+    --light-background: #f8fafc;
+    --border-color: #e5e7eb;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    --radius: 14px;
+    --max-width: 1180px;
+}
+
+/* ================================
+   Base Styles
+================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 1.7;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: min(92%, var(--max-width));
+    margin-inline: auto;
+}
+
+/* ================================
+   Header
+================================ */
+
+.site-header {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.site-logo {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.nav-list a {
+    display: block;
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-list a:hover,
+.nav-list a:focus {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+/* ================================
+   Main
+================================ */
+
+.main-content {
+    min-height: 70vh;
+}
+
+/* ================================
+   Hero
+================================ */
+
+.hero {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 83, 45, 0.96),
+            rgba(22, 101, 52, 0.88)
+        );
+    color: var(--white);
+    padding: 7rem 0;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+}
+
+.hero-text {
+    max-width: 780px;
+}
+
+.eyebrow {
+    color: var(--accent-color);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+}
+
+.hero .eyebrow {
+    color: #fef08a;
+}
+
+.hero h1,
+.page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.03em;
+}
+
+.hero h1 {
+    max-width: 800px;
+    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    line-height: 1.08;
+    margin-bottom: 1.5rem;
+}
+
+.hero-description {
+    max-width: 680px;
+    color: #ecfdf5;
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* ================================
+   Buttons
+================================ */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 700;
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.button:hover,
+.button:focus {
+    transform: translateY(-2px);
+}
+
+.button-primary {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+.button-primary:hover,
+.button-primary:focus {
+    background-color: #f0fdf4;
+}
+
+.button-secondary {
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: var(--white);
+}
+
+.button-secondary:hover,
+.button-secondary:focus {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+/* ================================
+   Page Hero
+================================ */
+
+.page-hero {
+    background-color: var(--secondary-color);
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.page-hero h1 {
+    color: var(--primary-color);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+}
+
+.page-hero p:last-child {
+    max-width: 700px;
+    color: var(--muted-text);
+    font-size: 1.05rem;
+}
+
+/* ================================
+   Sections
+================================ */
+
+.section {
+    padding: 5rem 0;
+}
+
+.section-heading {
+    max-width: 700px;
+    margin-bottom: 3rem;
+}
+
+.section-heading h2 {
+    color: var(--primary-color);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.section-heading > p:last-child {
+    color: var(--muted-text);
+}
+
+/* ================================
+   Feature Cards
+================================ */
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.feature-card {
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+}
+
+.feature-card p {
+    color: var(--muted-text);
+}
+
+/* ================================
+   Organization Cards
+================================ */
+
+.organization-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.organization-card {
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.organization-card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content h2 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+}
+
+.card-content p {
+    color: var(--muted-text);
+    margin-bottom: 1rem;
+}
+
+/* ================================
+   Project Cards
+================================ */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.project-card {
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.project-card h2 {
+    color: var(--primary-color);
+    margin: 1rem 0 0.75rem;
+}
+
+.project-card p {
+    color: var(--muted-text);
+    margin-bottom: 1rem;
+}
+
+.project-category {
+    display: inline-block;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* ================================
+   Category Cards
+================================ */
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.category-card {
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+.category-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.category-card h2 {
+    color: var(--primary-color);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    margin-bottom: 0.75rem;
+}
+
+.category-card p {
+    color: var(--muted-text);
+    margin-bottom: 1rem;
+}
+
+/* ================================
+   Links
+================================ */
+
+.text-link {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.text-link:hover,
+.text-link:focus {
+    text-decoration: underline;
+}
+
+/* ================================
+   Footer
+================================ */
+
+.site-footer {
+    background-color: #111827;
+    color: #d1d5db;
+    padding: 2.5rem 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.site-footer p {
+    font-size: 0.9rem;
+}
+
+/* ================================
+   Accessibility
+================================ */
+
+:focus-visible {
+    outline: 3px solid #f59e0b;
+    outline-offset: 3px;
+}
+
+/* ================================
+   Responsive Design
+================================ */
+
+@media (max-width: 850px) {
+
+    .header-container {
+        flex-direction: column;
+        justify-content: center;
+        padding: 1rem 0;
+        gap: 0.75rem;
+    }
+
+    .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .feature-grid,
+    .organization-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-grid,
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 5rem 0;
+    }
+
+    .page-hero {
+        padding: 4rem 0;
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .nav-list {
+        gap: 0.15rem;
+    }
+
+    .nav-list a {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    .hero {
+        padding: 4rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .category-card,
+    .project-card,
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
