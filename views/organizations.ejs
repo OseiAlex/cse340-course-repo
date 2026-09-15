@@ -1,86 +1,78 @@
 <%- include('partials/header', { title: title }) %>
 
 <section class="page-hero">
-    <div class="container">
-        <p class="eyebrow">Community Partners</p>
 
-        <h1>Organizations</h1>
+    <div class="container">
+
+        <p class="eyebrow">
+            Our Partners
+        </p>
+
+        <h1>
+            <%= title %>
+        </h1>
 
         <p>
-            Discover organizations working to improve communities
-            through service and volunteer opportunities.
+            Meet the organizations providing meaningful
+            service opportunities in our communities.
         </p>
+
     </div>
+
 </section>
 
+
 <section class="section">
+
     <div class="container">
 
         <div class="organization-grid">
 
-            <article class="organization-card">
-                <img
-                    src="/images/organization1.jpg"
-                    alt="Volunteers working together in a community"
-                >
+            <% if (organizations.length > 0) { %>
 
-                <div class="card-content">
-                    <h2>Community Development Organization</h2>
+                <% organizations.forEach(organization => { %>
 
-                    <p>
-                        Supports local development initiatives and
-                        community improvement projects.
-                    </p>
+                    <article class="organization-card">
 
-                    <a href="/projects" class="text-link">
-                        View Projects →
-                    </a>
-                </div>
-            </article>
+                        <img
+                            src="/images/<%= organization.logo_filename %>"
+                            alt="<%= organization.name %> logo"
+                        >
 
-            <article class="organization-card">
-                <img
-                    src="/images/organization2.jpg"
-                    alt="People participating in an educational activity"
-                >
+                        <div class="card-content">
 
-                <div class="card-content">
-                    <h2>Education Support Organization</h2>
+                            <h2>
+                                <%= organization.name %>
+                            </h2>
 
-                    <p>
-                        Provides educational resources, mentoring,
-                        and learning opportunities for young people.
-                    </p>
+                            <p>
+                                <%= organization.description %>
+                            </p>
 
-                    <a href="/projects" class="text-link">
-                        View Projects →
-                    </a>
-                </div>
-            </article>
+                            <p>
+                                <strong>Email:</strong>
+                                <%= organization.contact_email %>
+                            </p>
 
-            <article class="organization-card">
-                <img
-                    src="/images/organization3.jpg"
-                    alt="Community members participating in a health activity"
-                >
+                        </div>
 
-                <div class="card-content">
-                    <h2>Health and Wellness Organization</h2>
+                    </article>
 
-                    <p>
-                        Promotes healthy living and supports community
-                        health and wellness programs.
-                    </p>
+                <% }); %>
 
-                    <a href="/projects" class="text-link">
-                        View Projects →
-                    </a>
-                </div>
-            </article>
+            <% } else { %>
+
+                <p>
+                    No organizations are currently available.
+                </p>
+
+            <% } %>
 
         </div>
 
     </div>
+
 </section>
+
 
 <%- include('partials/footer') %>

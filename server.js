@@ -1,54 +1,208 @@
+import 'dotenv/config';
+
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import { testConnection } from './src/models/db.js';
+
+import {
+    getAllOrganizations
+} from './src/models/organizations.js';
+
+import {
+    getAllProjects
+} from './src/models/projects.js';
+
+import {
+    getAllCategories
+} from './src/models/categories.js';
+
+
 const app = express();
-const port = process.env.PORT || 3000;
+
+const PORT = process.env.PORT || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Set EJS as the view engine
+
+// ============================================
+// VIEW ENGINE
+// ============================================
+
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
 
-// Serve static files from the public folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.set(
+    'views',
+    path.join(__dirname, 'views')
+);
 
-// Home page
+
+// ============================================
+// STATIC FILES
+// ============================================
+
+app.use(
+    express.static(
+        path.join(__dirname, 'public')
+    )
+);
+
+
+// ============================================
+// HOME
+// ============================================
+
 app.get('/', async (req, res) => {
+
+    const title = 'Community Service Hub';
+
     res.render('home', {
-        title: 'Home'
+        title
     });
 });
 
-// Organizations page
+
+// ============================================
+// ORGANIZATIONS
+// ============================================
+
 app.get('/organizations', async (req, res) => {
-    res.render('organizations', {
-        title: 'Organizations'
-    });
+
+    try {
+
+        const organizations =
+            await getAllOrganizations();
+
+        const title =
+            'Our Partner Organizations';
+
+        res.render('organizations', {
+            title,
+            organizations
+        });
+
+    } catch (error) {
+
+        console.error(
+            'Error retrieving organizations:',
+            error
+        );
+
+        res.status(500).render('home', {
+            title: 'Database Error'
+        });
+    }
 });
 
-// Service projects page
+
+// ============================================
+// PROJECTS
+// ============================================
+
 app.get('/projects', async (req, res) => {
-    res.render('projects', {
-        title: 'Service Projects'
-    });
+
+    try {
+
+        const projects =
+            await getAllProjects();
+
+        const title =
+            'Service Projects';
+
+        res.render('projects', {
+            title,
+            projects
+        });
+
+    } catch (error) {
+
+        console.error(
+            'Error retrieving projects:',
+            error
+        );
+
+        res.status(500).render('home', {
+            title: 'Database Error'
+        });
+    }
 });
 
-// Service project categories page
+
+// ============================================
+// CATEGORIES
+// W02 REQUIREMENT
+// ============================================
+
 app.get('/categories', async (req, res) => {
-    res.render('categories', {
-        title: 'Service Project Categories'
-    });
+
+    try {
+
+        const categories =
+            await getAllCategories();
+
+        const title =
+            'Service Project Categories';
+
+        res.render('categories', {
+            title,
+            categories
+        });
+
+    } catch (error) {
+
+        console.error(
+            'Error retrieving categories:',
+            error
+        );
+
+        res.status(500).render('home', {
+            title: 'Database Error'
+        });
+    }
 });
 
-// 404 page
-app.use(async (req, res) => {
-    res.status(404).send('Page not found');
+
+// ============================================
+// 404
+// ============================================
+
+app.use((req, res) => {
+
+    res.status(404).send(
+        'Page not found.'
+    );
 });
 
-// Start server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+
+// ============================================
+// START SERVER
+// ============================================
+
+app.listen(PORT, async () => {
+
+    try {
+
+        await testConnection();
+
+        console.log(
+            `Server is running at http://127.0.0.1:${PORT}`
+        );
+
+        console.log(
+            `Environment: ${
+                process.env.NODE_ENV || 'development'
+            }`
+        );
+
+    } catch (error) {
+
+        console.error(
+            'Error connecting to the database:',
+            error.message
+        );
+
+    }
+
 });

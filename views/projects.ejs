@@ -1,94 +1,92 @@
 <%- include('partials/header', { title: title }) %>
 
 <section class="page-hero">
-    <div class="container">
-        <p class="eyebrow">Get Involved</p>
 
-        <h1>Service Projects</h1>
+    <div class="container">
+
+        <p class="eyebrow">
+            Give Back
+        </p>
+
+        <h1>
+            <%= title %>
+        </h1>
 
         <p>
-            Explore opportunities to volunteer your time and skills
-            while making a positive difference in your community.
+            Discover service projects and find an
+            opportunity where you can make a difference.
         </p>
+
     </div>
+
 </section>
 
+
 <section class="section">
+
     <div class="container">
 
         <div class="project-grid">
 
-            <article class="project-card">
-                <span class="project-category">
-                    Environmental
-                </span>
+            <% if (projects.length > 0) { %>
 
-                <h2>Community Clean-Up</h2>
+                <% projects.forEach(project => { %>
 
-                <p>
-                    Join volunteers in cleaning and improving public
-                    spaces within the community.
-                </p>
+                    <article class="project-card">
 
-                <a href="/categories" class="text-link">
-                    Explore Category →
-                </a>
-            </article>
+                        <div class="card-content">
 
-            <article class="project-card">
-                <span class="project-category">
-                    Educational
-                </span>
+                            <h2>
+                                <%= project.title %>
+                            </h2>
 
-                <h2>Student Mentoring</h2>
+                            <p>
+                                <%= project.description %>
+                            </p>
 
-                <p>
-                    Support students through tutoring, mentoring,
-                    and educational activities.
-                </p>
+                            <p>
+                                <strong>
+                                    Organization:
+                                </strong>
 
-                <a href="/categories" class="text-link">
-                    Explore Category →
-                </a>
-            </article>
+                                <%= project.organization_name %>
+                            </p>
 
-            <article class="project-card">
-                <span class="project-category">
-                    Community Service
-                </span>
+                            <p>
+                                <strong>
+                                    Location:
+                                </strong>
 
-                <h2>Community Support</h2>
+                                <%= project.location %>
+                            </p>
 
-                <p>
-                    Participate in projects designed to support
-                    individuals and families in the community.
-                </p>
+                            <p>
+                                <strong>
+                                    Date:
+                                </strong>
 
-                <a href="/categories" class="text-link">
-                    Explore Category →
-                </a>
-            </article>
+                                <%= project.date %>
+                            </p>
 
-            <article class="project-card">
-                <span class="project-category">
-                    Health and Wellness
-                </span>
+                        </div>
 
-                <h2>Health Awareness</h2>
+                    </article>
+
+                <% }); %>
+
+            <% } else { %>
 
                 <p>
-                    Help promote healthy lifestyles through community
-                    health education and awareness activities.
+                    No service projects are currently available.
                 </p>
 
-                <a href="/categories" class="text-link">
-                    Explore Category →
-                </a>
-            </article>
+            <% } %>
 
         </div>
 
     </div>
+
 </section>
+
 
 <%- include('partials/footer') %>
